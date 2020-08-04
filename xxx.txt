@@ -2,6 +2,9 @@
 
 ### test ebooking ###
 docker run --name my-sql -e MYSQL_ROOT_PASSWORD=P@ssw0rd -e MYSQL_DATABASE=1ncc_ebk -p 3306:3306 -d mysql:5.7.23
+### sql_mode ###
+sql_mode="ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION";
+################
 
 docker run --name my-sql -e MYSQL_ROOT_PASSWORD=111111 -e MYSQL_DATABASE=booking -p 3306:3306 -d mysql:5.7.23
 
