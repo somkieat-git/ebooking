@@ -1,0 +1,32 @@
+#docker run --name my-sql -e MYSQL_ROOT_PASSWORD=111111 -e MYSQL_DATABASE=keeplearning -p 3306:3306 -d mysql
+
+### test ebooking ###
+docker run --name my-sql -e MYSQL_ROOT_PASSWORD=P@ssw0rd -e MYSQL_DATABASE=1ncc_ebk -p 3306:3306 -d mysql:5.7.23
+
+docker run --name my-sql -e MYSQL_ROOT_PASSWORD=111111 -e MYSQL_DATABASE=booking -p 3306:3306 -d mysql:5.7.23
+
+docker exec -it my-sql bash
+mysql -uroot -p
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '111111';
+ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY '111111';
+exit
+exit
+
+docker run --name my-admin -d --link my-sql:db -p 8081:80 phpmyadmin/phpmyadmin
+
+#docker run -d --name my-php -p 8080:80 -v $PWD:/var/www/html php:7.2-apache
+
+#docker run -d --name my-php -p 8080:80 -v $PWD/www:/var/www/html  --link my-sql:db php:5.3-apache
+
+docker run -d --name my-php -p 8080:80 -v $PWD:/var/www/html -v $PWD/php/php.ini:/etc/php5/apache2/php.ini --link my-sql:db nawhath/php5.3-apache:2.0
+
+docker exec -it my-php bash
+
+docker container stop my-php
+docker container rm my-php
+
+docker container stop my-sql
+docker container rm my-sql
+
+docker container stop my-admin
+docker container rm my-admin
