@@ -33,3 +33,22 @@ docker container rm my-sql
 
 docker container stop my-admin
 docker container rm my-admin
+
+===========================
+mkdir test1
+cd test1/
+ls -la
+mkdir www
+cd www/
+git clone https://github.com/somkieat-git/ebooking.git
+ls -la
+cd ebooking/
+unzip ebooking2.zip 
+ls -la
+pwd
+cd ..
+cd ..
+pwd
+docker run --name my-sql -e MYSQL_ROOT_PASSWORD=P@ssw0rd -e MYSQL_DATABASE=1ncc_ebk -p 3306:3306 -d mysql:5.7.23
+docker exec -it my-sql bash
+docker container ps
